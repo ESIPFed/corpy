@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    ORR API Documentation
+    ORR Ont API Documentation
 
-    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \"Try it out\" button.  - You can click on the \"Authorize\" button at the top right of this page   (or the `!` icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic `GET` operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \"Try it out\" button will also show the corresponding API call that you can submit   from the command line using [`curl`](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at `http://cor.esipfed.org/sparql` for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   `http://cor.esipfed.org/ont`. 
+    The main ORR documentation is located at: http://mmisw.org/orrdoc/ ``` ###################################################### # NOTE #   OUT-OF-DATE for the time being. # Currently the swagger spec is maintained in the # https://github.com/mmisw/mmiorr-docs repo, which # is served at http://mmisw.org/orrdoc/api/ ###################################################### ``` __Note__: - We are in the process of writing this API documentation.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page also allows to directly exercise the API. - Actual requests from this page are against the endpoint at   `http://cor.esipfed.org/sparql`. This may change in a future version in   particular regarding a more general way of exercising the API (regardless   of concrete endpoint), or by allowing the selection of the particular endpoint.  - You can use the \"Authorize\" button above and enter your COR credentials to login   in this API interface. In this way you will be able to perform not only the basic   `GET` operations, but see expanded responses according to your access priviliges   and ontology visibility settings, as well as perform other operations as listed below.   # noqa: E501
 
     OpenAPI spec version: v0
     
@@ -11,8 +11,7 @@
 """
 
 
-import sys
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "swagger-client"
 VERSION = "1.0.0"
@@ -28,14 +27,14 @@ REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
 setup(
     name=NAME,
     version=VERSION,
-    description="ORR API Documentation",
+    description="ORR Ont API Documentation",
     author_email="",
     url="",
-    keywords=["Swagger", "ORR API Documentation"],
+    keywords=["Swagger", "ORR Ont API Documentation"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \&quot;Try it out\&quot; button.  - You can click on the \&quot;Authorize\&quot; button at the top right of this page   (or the &#x60;!&#x60; icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic &#x60;GET&#x60; operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \&quot;Try it out\&quot; button will also show the corresponding API call that you can submit   from the command line using [&#x60;curl&#x60;](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at &#x60;http://cor.esipfed.org/sparql&#x60; for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   &#x60;http://cor.esipfed.org/ont&#x60;. 
+    The main ORR documentation is located at: http://mmisw.org/orrdoc/ &#x60;&#x60;&#x60; ###################################################### # NOTE #   OUT-OF-DATE for the time being. # Currently the swagger spec is maintained in the # https://github.com/mmisw/mmiorr-docs repo, which # is served at http://mmisw.org/orrdoc/api/ ###################################################### &#x60;&#x60;&#x60; __Note__: - We are in the process of writing this API documentation.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page also allows to directly exercise the API. - Actual requests from this page are against the endpoint at   &#x60;http://cor.esipfed.org/sparql&#x60;. This may change in a future version in   particular regarding a more general way of exercising the API (regardless   of concrete endpoint), or by allowing the selection of the particular endpoint.  - You can use the \&quot;Authorize\&quot; button above and enter your COR credentials to login   in this API interface. In this way you will be able to perform not only the basic   &#x60;GET&#x60; operations, but see expanded responses according to your access priviliges   and ontology visibility settings, as well as perform other operations as listed below.   # noqa: E501
     """
 )

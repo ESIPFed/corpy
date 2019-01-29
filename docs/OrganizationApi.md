@@ -12,13 +12,13 @@ Method | HTTP request | Description
 
 
 # **add_org**
-> OrgNew add_org(body=body)
+> add_org(body=body)
 
 Registers an organization
 
-Only admins can perform this operation. 
 
-### Example 
+
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -27,17 +27,17 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganizationApi()
+api_instance = swagger_client.OrganizationApi(swagger_client.ApiClient(configuration))
 body = swagger_client.PostOrg() # PostOrg | Organization object that needs to be registered (optional)
 
-try: 
+try:
     # Registers an organization
-    api_response = api_instance.add_org(body=body)
-    pprint(api_response)
+    api_instance.add_org(body=body)
 except ApiException as e:
     print("Exception when calling OrganizationApi->add_org: %s\n" % e)
 ```
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrgNew**](OrgNew.md)
+void (empty response body)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -70,7 +70,7 @@ Unregisters an organization
 
 Only users with administrative privilege can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -79,14 +79,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganizationApi()
+api_instance = swagger_client.OrganizationApi(swagger_client.ApiClient(configuration))
 org_name = 'org_name_example' # str | Identifier of the organization
 
-try: 
+try:
     # Unregisters an organization
     api_instance.delete_org(org_name)
 except ApiException as e:
@@ -109,7 +110,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -121,7 +122,7 @@ Gets information about registered organizations
 
 Gets basic information of all registered organizations. This will include additional information depending on privileges of requesting user. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -132,7 +133,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.OrganizationApi()
 
-try: 
+try:
     # Gets information about registered organizations
     api_response = api_instance.org_get()
     pprint(api_response)
@@ -153,7 +154,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -163,7 +164,7 @@ No authorization required
 
 Gets basic information of a particular organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -175,7 +176,7 @@ from pprint import pprint
 api_instance = swagger_client.OrganizationApi()
 org_name = 'org_name_example' # str | The code (short name) of the organization.
 
-try: 
+try:
     # Gets basic information of a particular organization
     api_response = api_instance.org_org_name_get(org_name)
     pprint(api_response)
@@ -199,17 +200,17 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_org**
-> OrgUpdated update_org(org_name, body=body)
+> update_org(org_name, body=body)
 
 Updates information about a registered organization
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -218,18 +219,18 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganizationApi()
+api_instance = swagger_client.OrganizationApi(swagger_client.ApiClient(configuration))
 org_name = 'org_name_example' # str | The code (short name) of the organization to be updated.
 body = swagger_client.PutOrg() # PutOrg | Object with information for the organization to be updated. (optional)
 
-try: 
+try:
     # Updates information about a registered organization
-    api_response = api_instance.update_org(org_name, body=body)
-    pprint(api_response)
+    api_instance.update_org(org_name, body=body)
 except ApiException as e:
     print("Exception when calling OrganizationApi->update_org: %s\n" % e)
 ```
@@ -243,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrgUpdated**](OrgUpdated.md)
+void (empty response body)
 
 ### Authorization
 
@@ -251,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

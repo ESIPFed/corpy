@@ -16,9 +16,9 @@ Method | HTTP request | Description
 
 Registers a user
 
-This operation allows to register a new user in the system.  **NOTE**: This operation cannot be completed here if the endpoint is configured to required a ReCAPTCHA code, which is currently not captured in this interface. Please use the ORR Portal interface associated with the endpoint to register the new user. 
 
-### Example 
+
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -26,11 +26,16 @@ import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure HTTP basic authorization: basicAuth
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 body = swagger_client.PostUser() # PostUser | User object that needs to be registered (optional)
 
-try: 
+try:
     # Registers a user
     api_instance.add_user(body=body)
 except ApiException as e:
@@ -49,11 +54,11 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -65,7 +70,7 @@ Unregisters a user
 
 Only users with administrative privilege can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -74,14 +79,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 user_name = 'user_name_example' # str | Identifier of the user
 
-try: 
+try:
     # Unregisters a user
     api_instance.delete_user(user_name)
 except ApiException as e:
@@ -104,7 +110,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -116,7 +122,7 @@ Updates information about a registered user
 
 Only the same user and users with administrative privilege can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -125,15 +131,16 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 user_name = 'user_name_example' # str | The identifier of the user to be updated.
 body = swagger_client.PutUser() # PutUser | Object with information for the user to be updated. (optional)
 
-try: 
+try:
     # Updates information about a registered user
     api_instance.update_user(user_name, body=body)
 except ApiException as e:
@@ -157,7 +164,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -169,7 +176,7 @@ Gets information about registered users
 
 Gets information about registered users. This will include additional information depending on privileges of requesting user. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -180,7 +187,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.UserApi()
 
-try: 
+try:
     # Gets information about registered users
     api_response = api_instance.user_get()
     pprint(api_response)
@@ -201,7 +208,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -211,7 +218,7 @@ No authorization required
 
 Gets basic information of a particular user
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -223,7 +230,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 user_name = 'user_name_example' # str | The login (short name) of the user.
 
-try: 
+try:
     # Gets basic information of a particular user
     api_response = api_instance.user_user_name_get(user_name)
     pprint(api_response)
@@ -247,7 +254,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
