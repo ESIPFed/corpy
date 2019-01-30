@@ -1,6 +1,6 @@
 # swagger_client.TriplestoreApi
 
-All URIs are relative to *http://cor.esipfed.org/ont/api/v0*
+All URIs are relative to *https://mmisw.org/ont/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,7 +17,7 @@ Gets the size of the store or the size of a particular named graph
 
 Provide one of the `iri` or `context` parameters to get the size of a particular graph. If none of these parameters is provided, the size of the whole triplestore will be responded. Only admins can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -30,7 +30,7 @@ api_instance = swagger_client.TriplestoreApi()
 iri = 'iri_example' # str | IRI of particular context  (optional)
 context = 'context_example' # str | IRI of particular context  (optional)
 
-try: 
+try:
     # Gets the size of the store or the size of a particular named graph
     api_instance.get_triplestore_size(iri=iri, context=context)
 except ApiException as e:
@@ -66,7 +66,7 @@ Loads an ontology in the triplestore
 
 Only admins can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -75,14 +75,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.TriplestoreApi()
+api_instance = swagger_client.TriplestoreApi(swagger_client.ApiClient(configuration))
 iri = 'iri_example' # str | IRI of the ontology to be loaded 
 
-try: 
+try:
     # Loads an ontology in the triplestore
     api_instance.load_ont_in_triplestore(iri)
 except ApiException as e:
@@ -117,7 +118,7 @@ Reloads an ontology or all ontologies in the triplestore
 
 Provide the `iri` parameter to reload a particular ontology. Otherwise all registered ontologies will be reloaded in the triplestore. Only admins can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -126,14 +127,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.TriplestoreApi()
+api_instance = swagger_client.TriplestoreApi(swagger_client.ApiClient(configuration))
 iri = 'iri_example' # str | IRI of the ontology to be reloaded  (optional)
 
-try: 
+try:
     # Reloads an ontology or all ontologies in the triplestore
     api_instance.reload_onts_in_triplestore(iri=iri)
 except ApiException as e:
@@ -168,7 +170,7 @@ Unloads an ontology or all ontologies from the triplestore
 
 Provide the `iri` parameter to unload a particular ontology. Otherwise all registered ontologies will be unloaded from the triplestore. Only admins can perform this operation. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -177,14 +179,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.TriplestoreApi()
+api_instance = swagger_client.TriplestoreApi(swagger_client.ApiClient(configuration))
 iri = 'iri_example' # str | IRI of the ontology to be unloaded  (optional)
 
-try: 
+try:
     # Unloads an ontology or all ontologies from the triplestore
     api_instance.unload_onts_in_triplestore(iri=iri)
 except ApiException as e:

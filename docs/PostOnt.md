@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uri** | **str** | The URI of the ontology.  | [optional] 
-**original_uri** | **str** | In case of a fully-hosted registration, enter this field to indicate the original URI in the provided contents to be used for the \&quot;migration\&quot; of corresponding entities to the new URI.  | [optional] 
+**iri** | **str** | The IRI of the ontology.  | [optional] 
+**original_iri** | **str** | In case of a fully-hosted registration, enter this field to indicate the original IRI in the provided contents to be used for the \&quot;migration\&quot; of corresponding entities to the new IRI.  | [optional] 
 **name** | **str** | The name for the ontology. If omitted, the ORR will try to get this information from standard metadata in the submitted ontology contents.  | [optional] 
 **org_name** | **str** | ID of the organization that will own the ontology registration. If omitted, the owner will be the submitting user.  | [optional] 
 **visibility** | **str** | One of: &#x60;owner&#x60; or &#x60;public&#x60;. The default visibility is &#x60;owner&#x60;.  | [optional] 

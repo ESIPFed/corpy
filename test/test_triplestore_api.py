@@ -3,7 +3,7 @@
 """
     ORR API Documentation
 
-    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \"Try it out\" button.  - You can click on the \"Authorize\" button at the top right of this page   (or the `!` icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic `GET` operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \"Try it out\" button will also show the corresponding API call that you can submit   from the command line using [`curl`](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at `https://mmisw.org/sparql` for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   `https://mmisw.org/ont`. 
+    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \"Try it out\" button.  - You can click on the \"Authorize\" button at the top right of this page   (or the `!` icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic `GET` operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \"Try it out\" button will also show the corresponding API call that you can submit   from the command line using [`curl`](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at `https://mmisw.org/sparql` for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   `https://mmisw.org/ont`.   # noqa: E501
 
     OpenAPI spec version: v0
     
@@ -13,53 +13,47 @@
 
 from __future__ import absolute_import
 
-import os
-import sys
 import unittest
 
 import swagger_client
+from swagger_client.api.triplestore_api import TriplestoreApi  # noqa: E501
 from swagger_client.rest import ApiException
-from swagger_client.apis.triplestore_api import TriplestoreApi
 
 
 class TestTriplestoreApi(unittest.TestCase):
-    """ TriplestoreApi unit test stubs """
+    """TriplestoreApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.apis.triplestore_api.TriplestoreApi()
+        self.api = swagger_client.api.triplestore_api.TriplestoreApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
     def test_get_triplestore_size(self):
-        """
-        Test case for get_triplestore_size
+        """Test case for get_triplestore_size
 
-        Gets the size of the store or the size of a particular named graph
+        Gets the size of the store or the size of a particular named graph  # noqa: E501
         """
         pass
 
     def test_load_ont_in_triplestore(self):
-        """
-        Test case for load_ont_in_triplestore
+        """Test case for load_ont_in_triplestore
 
-        Loads an ontology in the triplestore
+        Loads an ontology in the triplestore  # noqa: E501
         """
         pass
 
     def test_reload_onts_in_triplestore(self):
-        """
-        Test case for reload_onts_in_triplestore
+        """Test case for reload_onts_in_triplestore
 
-        Reloads an ontology or all ontologies in the triplestore
+        Reloads an ontology or all ontologies in the triplestore  # noqa: E501
         """
         pass
 
     def test_unload_onts_in_triplestore(self):
-        """
-        Test case for unload_onts_in_triplestore
+        """Test case for unload_onts_in_triplestore
 
-        Unloads an ontology or all ontologies from the triplestore
+        Unloads an ontology or all ontologies from the triplestore  # noqa: E501
         """
         pass
 

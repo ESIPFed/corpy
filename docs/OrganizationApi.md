@@ -1,6 +1,6 @@
 # swagger_client.OrganizationApi
 
-All URIs are relative to *http://cor.esipfed.org/ont/api/v0*
+All URIs are relative to *https://mmisw.org/ont/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,11 +12,11 @@ Method | HTTP request | Description
 
 
 # **add_org**
-> add_org(body=body)
+> OrgNew add_org(body=body)
 
 Registers an organization
 
-
+Only admins can perform this operation. 
 
 ### Example
 ```python
@@ -37,7 +37,8 @@ body = swagger_client.PostOrg() # PostOrg | Organization object that needs to be
 
 try:
     # Registers an organization
-    api_instance.add_org(body=body)
+    api_response = api_instance.add_org(body=body)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrganizationApi->add_org: %s\n" % e)
 ```
@@ -50,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**OrgNew**](OrgNew.md)
 
 ### Authorization
 
@@ -58,7 +59,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -110,7 +111,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -154,7 +155,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -200,13 +201,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_org**
-> update_org(org_name, body=body)
+> OrgUpdated update_org(org_name, body=body)
 
 Updates information about a registered organization
 
@@ -230,7 +231,8 @@ body = swagger_client.PutOrg() # PutOrg | Object with information for the organi
 
 try:
     # Updates information about a registered organization
-    api_instance.update_org(org_name, body=body)
+    api_response = api_instance.update_org(org_name, body=body)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling OrganizationApi->update_org: %s\n" % e)
 ```
@@ -244,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**OrgUpdated**](OrgUpdated.md)
 
 ### Authorization
 
@@ -252,7 +254,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

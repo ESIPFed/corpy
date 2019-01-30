@@ -1,6 +1,6 @@
 # swagger_client.TermApi
 
-All URIs are relative to *http://cor.esipfed.org/ont/api/v0*
+All URIs are relative to *https://mmisw.org/ont/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Adds a term to an existing ORR vocabulary
 
 This operation allows to add a new term to an ORR vocabulary. This addition does not generate a new version of the vocabulary. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -24,14 +24,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # Configure HTTP basic authorization: basicAuth
-swagger_client.configuration.username = 'YOUR_USERNAME'
-swagger_client.configuration.password = 'YOUR_PASSWORD'
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
-api_instance = swagger_client.TermApi()
+api_instance = swagger_client.TermApi(swagger_client.ApiClient(configuration))
 body = swagger_client.PostTerm() # PostTerm | Object with information for the term to be added. See the `PostOnt` object description for more details. 
 
-try: 
+try:
     # Adds a term to an existing ORR vocabulary
     api_instance.add_term(body)
 except ApiException as e:
@@ -66,7 +67,7 @@ Simplified semantic search queries against the triple store
 
 This endpoint route is intended to provide some common semantic search operations against the triple store.  **NOTE**: This is an experimental operation. The SPARQL interface remains the most complete and powerful semantic search mechanism.  Provide one of `containing` or `predicate` as main parameter, along with associated auxiliary and optional parameters as described. 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -84,7 +85,7 @@ object = 'object_example' # str | IRI of the object for underlying SPARQL query.
 limit = 56 # int | Maximum number of solutions to be returned. The default value is 30. A non-positive value means no limit, so all solutions will be returned.  (optional)
 offset = 56 # int | Solutions returned will start after the specified number of solutions. Ignored if the value is non-positive. By default, no offset.  (optional)
 
-try: 
+try:
     # Simplified semantic search queries against the triple store
     api_instance.term_get(containing=containing, _in=_in, predicate=predicate, subject=subject, object=object, limit=limit, offset=offset)
 except ApiException as e:

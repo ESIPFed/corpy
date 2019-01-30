@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    ORR Ont API Documentation
+    ORR API Documentation
 
-    The main ORR documentation is located at: http://mmisw.org/orrdoc/ ``` ###################################################### # NOTE #   OUT-OF-DATE for the time being. # Currently the swagger spec is maintained in the # https://github.com/mmisw/mmiorr-docs repo, which # is served at http://mmisw.org/orrdoc/api/ ###################################################### ``` __Note__: - We are in the process of writing this API documentation.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page also allows to directly exercise the API. - Actual requests from this page are against the endpoint at   `http://cor.esipfed.org/sparql`. This may change in a future version in   particular regarding a more general way of exercising the API (regardless   of concrete endpoint), or by allowing the selection of the particular endpoint.  - You can use the \"Authorize\" button above and enter your COR credentials to login   in this API interface. In this way you will be able to perform not only the basic   `GET` operations, but see expanded responses according to your access priviliges   and ontology visibility settings, as well as perform other operations as listed below.   # noqa: E501
+    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \"Try it out\" button.  - You can click on the \"Authorize\" button at the top right of this page   (or the `!` icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic `GET` operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \"Try it out\" button will also show the corresponding API call that you can submit   from the command line using [`curl`](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at `https://mmisw.org/sparql` for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   `https://mmisw.org/ont`.   # noqa: E501
 
     OpenAPI spec version: v0
     
@@ -36,7 +36,8 @@ class PostUser(object):
         'first_name': 'str',
         'last_name': 'str',
         'password': 'str',
-        'phone': 'str'
+        'phone': 'str',
+        'recaptcha_response': 'str'
     }
 
     attribute_map = {
@@ -45,10 +46,11 @@ class PostUser(object):
         'first_name': 'firstName',
         'last_name': 'lastName',
         'password': 'password',
-        'phone': 'phone'
+        'phone': 'phone',
+        'recaptcha_response': 'recaptchaResponse'
     }
 
-    def __init__(self, user_name=None, email=None, first_name=None, last_name=None, password=None, phone=None):  # noqa: E501
+    def __init__(self, user_name=None, email=None, first_name=None, last_name=None, password=None, phone=None, recaptcha_response=None):  # noqa: E501
         """PostUser - a model defined in Swagger"""  # noqa: E501
 
         self._user_name = None
@@ -57,6 +59,7 @@ class PostUser(object):
         self._last_name = None
         self._password = None
         self._phone = None
+        self._recaptcha_response = None
         self.discriminator = None
 
         if user_name is not None:
@@ -71,6 +74,8 @@ class PostUser(object):
             self.password = password
         if phone is not None:
             self.phone = phone
+        if recaptcha_response is not None:
+            self.recaptcha_response = recaptcha_response
 
     @property
     def user_name(self):
@@ -197,6 +202,29 @@ class PostUser(object):
         """
 
         self._phone = phone
+
+    @property
+    def recaptcha_response(self):
+        """Gets the recaptcha_response of this PostUser.  # noqa: E501
+
+        Response provided by a [ReCAPCTHA](https://www.google.com/recaptcha) client library. Only required if the ORR Ont endpoint has been configured to validate the registration of users in this manner.   # noqa: E501
+
+        :return: The recaptcha_response of this PostUser.  # noqa: E501
+        :rtype: str
+        """
+        return self._recaptcha_response
+
+    @recaptcha_response.setter
+    def recaptcha_response(self, recaptcha_response):
+        """Sets the recaptcha_response of this PostUser.
+
+        Response provided by a [ReCAPCTHA](https://www.google.com/recaptcha) client library. Only required if the ORR Ont endpoint has been configured to validate the registration of users in this manner.   # noqa: E501
+
+        :param recaptcha_response: The recaptcha_response of this PostUser.  # noqa: E501
+        :type: str
+        """
+
+        self._recaptcha_response = recaptcha_response
 
     def to_dict(self):
         """Returns the model properties as a dict"""

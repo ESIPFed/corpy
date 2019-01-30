@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uri** | **str** |  | [optional] 
+**iri** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **version** | **str** |  | [optional] 
 **owner_name** | **str** |  | [optional] 

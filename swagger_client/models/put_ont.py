@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    ORR Ont API Documentation
+    ORR API Documentation
 
-    The main ORR documentation is located at: http://mmisw.org/orrdoc/ ``` ###################################################### # NOTE #   OUT-OF-DATE for the time being. # Currently the swagger spec is maintained in the # https://github.com/mmisw/mmiorr-docs repo, which # is served at http://mmisw.org/orrdoc/api/ ###################################################### ``` __Note__: - We are in the process of writing this API documentation.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page also allows to directly exercise the API. - Actual requests from this page are against the endpoint at   `http://cor.esipfed.org/sparql`. This may change in a future version in   particular regarding a more general way of exercising the API (regardless   of concrete endpoint), or by allowing the selection of the particular endpoint.  - You can use the \"Authorize\" button above and enter your COR credentials to login   in this API interface. In this way you will be able to perform not only the basic   `GET` operations, but see expanded responses according to your access priviliges   and ontology visibility settings, as well as perform other operations as listed below.   # noqa: E501
+    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \"Try it out\" button.  - You can click on the \"Authorize\" button at the top right of this page   (or the `!` icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic `GET` operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \"Try it out\" button will also show the corresponding API call that you can submit   from the command line using [`curl`](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at `https://mmisw.org/sparql` for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   `https://mmisw.org/ont`.   # noqa: E501
 
     OpenAPI spec version: v0
     
@@ -31,9 +31,9 @@ class PutOnt(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'uri': 'str',
+        'iri': 'str',
         'version': 'str',
-        'original_uri': 'str',
+        'original_iri': 'str',
         'name': 'str',
         'visibility': 'str',
         'status': 'str',
@@ -46,9 +46,9 @@ class PutOnt(object):
     }
 
     attribute_map = {
-        'uri': 'uri',
+        'iri': 'iri',
         'version': 'version',
-        'original_uri': 'originalUri',
+        'original_iri': 'originalIri',
         'name': 'name',
         'visibility': 'visibility',
         'status': 'status',
@@ -60,12 +60,12 @@ class PutOnt(object):
         'user_name': 'userName'
     }
 
-    def __init__(self, uri=None, version=None, original_uri=None, name=None, visibility=None, status=None, metadata=None, uploaded_filename=None, uploaded_format=None, contents=None, format=None, user_name=None):  # noqa: E501
+    def __init__(self, iri=None, version=None, original_iri=None, name=None, visibility=None, status=None, metadata=None, uploaded_filename=None, uploaded_format=None, contents=None, format=None, user_name=None):  # noqa: E501
         """PutOnt - a model defined in Swagger"""  # noqa: E501
 
-        self._uri = None
+        self._iri = None
         self._version = None
-        self._original_uri = None
+        self._original_iri = None
         self._name = None
         self._visibility = None
         self._status = None
@@ -77,12 +77,12 @@ class PutOnt(object):
         self._user_name = None
         self.discriminator = None
 
-        if uri is not None:
-            self.uri = uri
+        if iri is not None:
+            self.iri = iri
         if version is not None:
             self.version = version
-        if original_uri is not None:
-            self.original_uri = original_uri
+        if original_iri is not None:
+            self.original_iri = original_iri
         if name is not None:
             self.name = name
         if visibility is not None:
@@ -103,27 +103,27 @@ class PutOnt(object):
             self.user_name = user_name
 
     @property
-    def uri(self):
-        """Gets the uri of this PutOnt.  # noqa: E501
+    def iri(self):
+        """Gets the iri of this PutOnt.  # noqa: E501
 
-        The URI of the ontology to be updated.  # noqa: E501
+        The IRI of the ontology to be updated.  # noqa: E501
 
-        :return: The uri of this PutOnt.  # noqa: E501
+        :return: The iri of this PutOnt.  # noqa: E501
         :rtype: str
         """
-        return self._uri
+        return self._iri
 
-    @uri.setter
-    def uri(self, uri):
-        """Sets the uri of this PutOnt.
+    @iri.setter
+    def iri(self, iri):
+        """Sets the iri of this PutOnt.
 
-        The URI of the ontology to be updated.  # noqa: E501
+        The IRI of the ontology to be updated.  # noqa: E501
 
-        :param uri: The uri of this PutOnt.  # noqa: E501
+        :param iri: The iri of this PutOnt.  # noqa: E501
         :type: str
         """
 
-        self._uri = uri
+        self._iri = iri
 
     @property
     def version(self):
@@ -149,27 +149,27 @@ class PutOnt(object):
         self._version = version
 
     @property
-    def original_uri(self):
-        """Gets the original_uri of this PutOnt.  # noqa: E501
+    def original_iri(self):
+        """Gets the original_iri of this PutOnt.  # noqa: E501
 
-        In case a fully-hosted registration and ontology contents are provided for this update, enter this field to indicate the original URI to be used for the \"migration\" of corresponding entities to the URI used for registration.   # noqa: E501
+        In case a fully-hosted registration and ontology contents are provided for this update, enter this field to indicate the original IRI to be used for the \"migration\" of corresponding entities to the IRI used for registration.   # noqa: E501
 
-        :return: The original_uri of this PutOnt.  # noqa: E501
+        :return: The original_iri of this PutOnt.  # noqa: E501
         :rtype: str
         """
-        return self._original_uri
+        return self._original_iri
 
-    @original_uri.setter
-    def original_uri(self, original_uri):
-        """Sets the original_uri of this PutOnt.
+    @original_iri.setter
+    def original_iri(self, original_iri):
+        """Sets the original_iri of this PutOnt.
 
-        In case a fully-hosted registration and ontology contents are provided for this update, enter this field to indicate the original URI to be used for the \"migration\" of corresponding entities to the URI used for registration.   # noqa: E501
+        In case a fully-hosted registration and ontology contents are provided for this update, enter this field to indicate the original IRI to be used for the \"migration\" of corresponding entities to the IRI used for registration.   # noqa: E501
 
-        :param original_uri: The original_uri of this PutOnt.  # noqa: E501
+        :param original_iri: The original_iri of this PutOnt.  # noqa: E501
         :type: str
         """
 
-        self._original_uri = original_uri
+        self._original_iri = original_iri
 
     @property
     def name(self):

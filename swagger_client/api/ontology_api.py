@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    ORR Ont API Documentation
+    ORR API Documentation
 
-    The main ORR documentation is located at: http://mmisw.org/orrdoc/ ``` ###################################################### # NOTE #   OUT-OF-DATE for the time being. # Currently the swagger spec is maintained in the # https://github.com/mmisw/mmiorr-docs repo, which # is served at http://mmisw.org/orrdoc/api/ ###################################################### ``` __Note__: - We are in the process of writing this API documentation.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page also allows to directly exercise the API. - Actual requests from this page are against the endpoint at   `http://cor.esipfed.org/sparql`. This may change in a future version in   particular regarding a more general way of exercising the API (regardless   of concrete endpoint), or by allowing the selection of the particular endpoint.  - You can use the \"Authorize\" button above and enter your COR credentials to login   in this API interface. In this way you will be able to perform not only the basic   `GET` operations, but see expanded responses according to your access priviliges   and ontology visibility settings, as well as perform other operations as listed below.   # noqa: E501
+    The main ORR documentation is located at: https://mmisw.org/orrdoc/  __Please note__: - The ORR API is approaching a stable version but is still work in progress.   Please [let us know](https://github.com/mmisw/mmiorr-docs/issues) if you have any   questions or suggestions.  - Besides the documentation itself, this page lets you directly exercise and test the API.   Click on any operation header below to learn more details about it, and see a \"Try it out\" button.  - You can click on the \"Authorize\" button at the top right of this page   (or the `!` icon under the particular operation)   to retrieve an authentication token corresponding to your ORR instance credentials (username and password).   Once authorized, the authentication token will be automatically included in the corresponding request.   You will be able to not only perform the basic `GET` operations,   but also see expanded responses according to your access privileges   as well as perform other operations.  - The \"Try it out\" button will also show the corresponding API call that you can submit   from the command line using [`curl`](https://curl.haxx.se/).  - This API includes administrative operations related with the triple store.   The SPARQL endpoint itself   (located at `https://mmisw.org/sparql` for the MMI ORR instance)   is not described here.   (General SPARQL information can be found [here](https://en.wikipedia.org/wiki/SPARQL),   and regarding the current service used by the ORR to support the SPARQL interface   [here](http://franz.com/agraph/support/documentation/current/http-protocol.html).)  - Actual requests from this page are against the specific endpoint at   `https://mmisw.org/ont`.   # noqa: E501
 
     OpenAPI spec version: v0
     
@@ -36,7 +36,7 @@ class OntologyApi(object):
     def add_ont(self, body, **kwargs):  # noqa: E501
         """Registers a brand new ontology  # noqa: E501
 
-        Performs the registration of a brand new ontology in the registry by the URI given in the `uri` attribute of the object in the body.   # noqa: E501
+        Performs the registration of a brand new ontology in the registry by the IRI given in the `iri` attribute of the object in the body.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.add_ont(body, async_req=True)
@@ -58,7 +58,7 @@ class OntologyApi(object):
     def add_ont_with_http_info(self, body, **kwargs):  # noqa: E501
         """Registers a brand new ontology  # noqa: E501
 
-        Performs the registration of a brand new ontology in the registry by the URI given in the `uri` attribute of the object in the body.   # noqa: E501
+        Performs the registration of a brand new ontology in the registry by the IRI given in the `iri` attribute of the object in the body.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.add_ont_with_http_info(body, async_req=True)
@@ -111,7 +111,7 @@ class OntologyApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['application/json', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basicAuth']  # noqa: E501
@@ -132,47 +132,148 @@ class OntologyApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_ont(self, uri, user_name, **kwargs):  # noqa: E501
-        """Deletes a particular version or a whole ontology entry  # noqa: E501
+    def add_term(self, body, **kwargs):  # noqa: E501
+        """Adds a term to an existing ORR vocabulary  # noqa: E501
 
+        This operation allows to add a new term to an ORR vocabulary. This addition does not generate a new version of the vocabulary.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ont(uri, user_name, async_req=True)
+        >>> thread = api.add_term(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str uri: Ontology URI (required)
-        :param str user_name: Registered user making the request. Must be an owner of the ontology.  (required)
-        :param str version: Particular version to be deleted. If omitted, the whole entry by the given URI will be unregistered. 
+        :param PostTerm body: Object with information for the term to be added. See the `PostOnt` object description for more details.  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_ont_with_http_info(uri, user_name, **kwargs)  # noqa: E501
+            return self.add_term_with_http_info(body, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_ont_with_http_info(uri, user_name, **kwargs)  # noqa: E501
+            (data) = self.add_term_with_http_info(body, **kwargs)  # noqa: E501
             return data
 
-    def delete_ont_with_http_info(self, uri, user_name, **kwargs):  # noqa: E501
-        """Deletes a particular version or a whole ontology entry  # noqa: E501
+    def add_term_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Adds a term to an existing ORR vocabulary  # noqa: E501
 
+        This operation allows to add a new term to an ORR vocabulary. This addition does not generate a new version of the vocabulary.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ont_with_http_info(uri, user_name, async_req=True)
+        >>> thread = api.add_term_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str uri: Ontology URI (required)
-        :param str user_name: Registered user making the request. Must be an owner of the ontology.  (required)
-        :param str version: Particular version to be deleted. If omitted, the whole entry by the given URI will be unregistered. 
+        :param PostTerm body: Object with information for the term to be added. See the `PostOnt` object description for more details.  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['uri', 'user_name', 'version']  # noqa: E501
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method add_term" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `add_term`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['basicAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/ont/term', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def delete_ont(self, iri, user_name, **kwargs):  # noqa: E501
+        """Deletes a particular version or a whole ontology entry  # noqa: E501
+
+        This operation allows to unregister a particular version (if the `version` object attribute is given) or a whole ontoloy entry. Besides admins, only an owner of the ontology can perform this operation.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_ont(iri, user_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str iri: Ontology IRI (required)
+        :param str user_name: Registered user making the request. Must be an owner of the ontology.  (required)
+        :param str version: Particular version to be deleted. If omitted, the whole entry by the given IRI will be unregistered. 
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.delete_ont_with_http_info(iri, user_name, **kwargs)  # noqa: E501
+        else:
+            (data) = self.delete_ont_with_http_info(iri, user_name, **kwargs)  # noqa: E501
+            return data
+
+    def delete_ont_with_http_info(self, iri, user_name, **kwargs):  # noqa: E501
+        """Deletes a particular version or a whole ontology entry  # noqa: E501
+
+        This operation allows to unregister a particular version (if the `version` object attribute is given) or a whole ontoloy entry. Besides admins, only an owner of the ontology can perform this operation.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_ont_with_http_info(iri, user_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str iri: Ontology IRI (required)
+        :param str user_name: Registered user making the request. Must be an owner of the ontology.  (required)
+        :param str version: Particular version to be deleted. If omitted, the whole entry by the given IRI will be unregistered. 
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['iri', 'user_name', 'version']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -187,10 +288,10 @@ class OntologyApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'uri' is set
-        if ('uri' not in params or
-                params['uri'] is None):
-            raise ValueError("Missing the required parameter `uri` when calling `delete_ont`")  # noqa: E501
+        # verify the required parameter 'iri' is set
+        if ('iri' not in params or
+                params['iri'] is None):
+            raise ValueError("Missing the required parameter `iri` when calling `delete_ont`")  # noqa: E501
         # verify the required parameter 'user_name' is set
         if ('user_name' not in params or
                 params['user_name'] is None):
@@ -201,8 +302,8 @@ class OntologyApi(object):
         path_params = {}
 
         query_params = []
-        if 'uri' in params:
-            query_params.append(('uri', params['uri']))  # noqa: E501
+        if 'iri' in params:
+            query_params.append(('iri', params['iri']))  # noqa: E501
         if 'version' in params:
             query_params.append(('version', params['version']))  # noqa: E501
         if 'user_name' in params:
@@ -220,7 +321,7 @@ class OntologyApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['application/json', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basicAuth']  # noqa: E501
@@ -244,17 +345,17 @@ class OntologyApi(object):
     def ont_get(self, **kwargs):  # noqa: E501
         """Gets information about registered ontologies or terms  # noqa: E501
 
-        General ontology or term report according to given parameters, associated ontology visibility, and privilege of the requesting user. All parameters are optional.   Any given `uri`, `ouri`, or `turi` parameter indicates a request for a particular ontology or term.  If none of the `uri`, `ouri`, and `turi` parameters is given, this will indicate a query for a list of ontologies. In this case, only a metadata summary is provided for each reported ontology (in particular, no ontology contents per se is reported). Also, other supplied parameters will be used to query for the desired ontologies. For example, with the query paramenter and value `ownerName=acme`, all ontologies owned by the `acme` organization will be considered for reporting.   # noqa: E501
+        General ontology or term report according to given parameters, associated ontology visibility, and privilege of the requesting user. All parameters are optional.   Any given `iri`, `oiri`, or `tiri` parameter indicates a request for a particular ontology or term.  If none of the `iri`, `oiri`, and `tiri` parameters is given, this will indicate a query for a list of ontologies. In this case, only a metadata summary is provided for each reported ontology (in particular, no ontology contents per se is reported). Also, other supplied parameters will be used to query for the desired ontologies. For example, with the query paramenter and value `ownerName=acme`, all ontologies owned by the `acme` organization will be considered for reporting.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.ont_get(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str uri: With this parameter the backend will first try an \"ontology request.\" If no ontlogy is registered by the given URI, then it will try a \"term request.\" 
-        :param str ouri: Use this parameter to exclusively make a \"ontology request.\" 
+        :param str iri: With this parameter the backend will first try an \"ontology request.\" If no ontlogy is registered by the given IRI, then it will try a \"term request.\" 
+        :param str oiri: Use this parameter to exclusively make a \"ontology request.\" 
         :param str version: Desired version in the case of an \"ontology request.\" 
-        :param str turi: Use this parameter to exclusively make a \"term request.\" 
+        :param str tiri: Use this parameter to exclusively make a \"term request.\" 
         :param str format: Desired format for the response in the case of a single ontology or term request. 
         :return: list[Ont]
                  If the method is called asynchronously,
@@ -270,24 +371,24 @@ class OntologyApi(object):
     def ont_get_with_http_info(self, **kwargs):  # noqa: E501
         """Gets information about registered ontologies or terms  # noqa: E501
 
-        General ontology or term report according to given parameters, associated ontology visibility, and privilege of the requesting user. All parameters are optional.   Any given `uri`, `ouri`, or `turi` parameter indicates a request for a particular ontology or term.  If none of the `uri`, `ouri`, and `turi` parameters is given, this will indicate a query for a list of ontologies. In this case, only a metadata summary is provided for each reported ontology (in particular, no ontology contents per se is reported). Also, other supplied parameters will be used to query for the desired ontologies. For example, with the query paramenter and value `ownerName=acme`, all ontologies owned by the `acme` organization will be considered for reporting.   # noqa: E501
+        General ontology or term report according to given parameters, associated ontology visibility, and privilege of the requesting user. All parameters are optional.   Any given `iri`, `oiri`, or `tiri` parameter indicates a request for a particular ontology or term.  If none of the `iri`, `oiri`, and `tiri` parameters is given, this will indicate a query for a list of ontologies. In this case, only a metadata summary is provided for each reported ontology (in particular, no ontology contents per se is reported). Also, other supplied parameters will be used to query for the desired ontologies. For example, with the query paramenter and value `ownerName=acme`, all ontologies owned by the `acme` organization will be considered for reporting.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.ont_get_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str uri: With this parameter the backend will first try an \"ontology request.\" If no ontlogy is registered by the given URI, then it will try a \"term request.\" 
-        :param str ouri: Use this parameter to exclusively make a \"ontology request.\" 
+        :param str iri: With this parameter the backend will first try an \"ontology request.\" If no ontlogy is registered by the given IRI, then it will try a \"term request.\" 
+        :param str oiri: Use this parameter to exclusively make a \"ontology request.\" 
         :param str version: Desired version in the case of an \"ontology request.\" 
-        :param str turi: Use this parameter to exclusively make a \"term request.\" 
+        :param str tiri: Use this parameter to exclusively make a \"term request.\" 
         :param str format: Desired format for the response in the case of a single ontology or term request. 
         :return: list[Ont]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['uri', 'ouri', 'version', 'turi', 'format']  # noqa: E501
+        all_params = ['iri', 'oiri', 'version', 'tiri', 'format']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -308,14 +409,14 @@ class OntologyApi(object):
         path_params = {}
 
         query_params = []
-        if 'uri' in params:
-            query_params.append(('uri', params['uri']))  # noqa: E501
-        if 'ouri' in params:
-            query_params.append(('ouri', params['ouri']))  # noqa: E501
+        if 'iri' in params:
+            query_params.append(('iri', params['iri']))  # noqa: E501
+        if 'oiri' in params:
+            query_params.append(('oiri', params['oiri']))  # noqa: E501
         if 'version' in params:
             query_params.append(('version', params['version']))  # noqa: E501
-        if 'turi' in params:
-            query_params.append(('turi', params['turi']))  # noqa: E501
+        if 'tiri' in params:
+            query_params.append(('tiri', params['tiri']))  # noqa: E501
         if 'format' in params:
             query_params.append(('format', params['format']))  # noqa: E501
 
@@ -331,7 +432,7 @@ class OntologyApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['application/json', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
@@ -362,7 +463,7 @@ class OntologyApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param PutOnt body: Ontology object that needs to be registered
+        :param PutOnt body: Ontology object that needs to be registered. Provide the `metadata` attribute to create a new version of an existing ontology solely based on changes on the metadata. For full contents, use `contents`/`format`, or `uploadedFilename`/`uploadedFormat` as described in the `POST /ont` operation. 
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -384,7 +485,7 @@ class OntologyApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param PutOnt body: Ontology object that needs to be registered
+        :param PutOnt body: Ontology object that needs to be registered. Provide the `metadata` attribute to create a new version of an existing ontology solely based on changes on the metadata. For full contents, use `contents`/`format`, or `uploadedFilename`/`uploadedFormat` as described in the `POST /ont` operation. 
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -426,7 +527,7 @@ class OntologyApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['application/json', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basicAuth']  # noqa: E501
@@ -450,7 +551,7 @@ class OntologyApi(object):
     def upload_ont(self, file, format, **kwargs):  # noqa: E501
         """Uploads an ontology file for subsequent registration  # noqa: E501
 
-        This operation allows to upload an ontology file as a preliminary step for subsequent registration via a `POST /ont` request.   Before having to provide other required information for registration, this separated step helps not only in determining that the file is a valid ontology, but also in terms of the returned associated information that the user or client application can use for actual registration, for example, regarding possible ontology URIs found in the file.   # noqa: E501
+        This operation allows to upload an ontology file as a preliminary step for subsequent registration via a `POST /ont` request.   Before having to provide other required information for registration, this separated step helps not only in determining that the file corresponds to an ontology in a recognized format, but also in terms of the returned associated information that the user or client application can use for actual registration, for example, regarding possible ontology IRIs found in the file.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.upload_ont(file, format, async_req=True)
@@ -458,7 +559,7 @@ class OntologyApi(object):
 
         :param async_req bool
         :param file file: The file to be uploaded. (required)
-        :param str format: Format of the file. The special value `\"guess\"` can be given to let the ORR automatically determine the format. (A future version of this API may allow this parameter to be skipped, in such case with the \"guess format\" behavior implied.)  (required)
+        :param str format: Format of the file. The supported formats are described in [this section](https://mmisw.org/orrdoc/ontology/new/#supported-ontology-formats) of the documentation. The special value `\"_guess\"` (without quotes) can be given to let the ORR automatically determine the format. (A future version of this API may allow this parameter to be omitted, in such case implying the guess-format behavior.)  (required)
         :return: UploadedFileInfo
                  If the method is called asynchronously,
                  returns the request thread.
@@ -473,7 +574,7 @@ class OntologyApi(object):
     def upload_ont_with_http_info(self, file, format, **kwargs):  # noqa: E501
         """Uploads an ontology file for subsequent registration  # noqa: E501
 
-        This operation allows to upload an ontology file as a preliminary step for subsequent registration via a `POST /ont` request.   Before having to provide other required information for registration, this separated step helps not only in determining that the file is a valid ontology, but also in terms of the returned associated information that the user or client application can use for actual registration, for example, regarding possible ontology URIs found in the file.   # noqa: E501
+        This operation allows to upload an ontology file as a preliminary step for subsequent registration via a `POST /ont` request.   Before having to provide other required information for registration, this separated step helps not only in determining that the file corresponds to an ontology in a recognized format, but also in terms of the returned associated information that the user or client application can use for actual registration, for example, regarding possible ontology IRIs found in the file.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.upload_ont_with_http_info(file, format, async_req=True)
@@ -481,7 +582,7 @@ class OntologyApi(object):
 
         :param async_req bool
         :param file file: The file to be uploaded. (required)
-        :param str format: Format of the file. The special value `\"guess\"` can be given to let the ORR automatically determine the format. (A future version of this API may allow this parameter to be skipped, in such case with the \"guess format\" behavior implied.)  (required)
+        :param str format: Format of the file. The supported formats are described in [this section](https://mmisw.org/orrdoc/ontology/new/#supported-ontology-formats) of the documentation. The special value `\"_guess\"` (without quotes) can be given to let the ORR automatically determine the format. (A future version of this API may allow this parameter to be omitted, in such case implying the guess-format behavior.)  (required)
         :return: UploadedFileInfo
                  If the method is called asynchronously,
                  returns the request thread.
@@ -533,7 +634,7 @@ class OntologyApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['application/json', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basicAuth']  # noqa: E501
