@@ -1,6 +1,6 @@
 # swagger_client.OrganizationApi
 
-All URIs are relative to *https://mmisw.org/ont/api/v0*
+All URIs are relative to *http://cor.esipfed.org/ont/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
